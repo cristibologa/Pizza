@@ -1,0 +1,25 @@
+@import url('./assets/styles/fonts.css');
+
+
+:root {
+  
+  font-family: 'Nunito' sans-serif;
+
+  --background: var(--neutral-50);
+  --primary: var(--neutral-900);
+  --primary-foreground: var(--neutral-50); /* secondary*/
+  --surface-foreground: var(--neutral-100);
+  --accent-quaternary: var(--orange-600);
+  --foreground: var(--neutral-900); /* secondary-foreground*/
+
+  --neutral-50: #FBFBFBFF;
+  --neutral-100: #F5F5F5FF;
+  --neutral-900: #0B0B0BFF;
+  --orange-50: #FFF7EDFF;
+  --orange-600: #F14E1DFF;
+  --orange-900: #7C2D12FF;
+  
+
+
+}
+
