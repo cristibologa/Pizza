@@ -1,9 +1,4 @@
-@import url('./assets/styles/fonts.css');
-
-
 :root {
-  
-  font-family: 'Nunito' sans-serif;
 
   --background: var(--neutral-50);
   --primary: var(--neutral-900);
@@ -18,7 +13,10 @@
   --orange-50: #FFF7EDFF;
   --orange-600: #F14E1DFF;
   --orange-900: #7C2D12FF;
-  
+
+
+  --container-width:1200px;
+  --container-padding-x:15px;
 
 
 }
