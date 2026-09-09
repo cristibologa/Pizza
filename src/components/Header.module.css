@@ -1,0 +1,17 @@
+.header{
+	margin-top: 64px;
+
+}
+.wraper{
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 12px;
+	align-items: center;
+
+}
+.logo{
+	
+	font-weight: 600;
+}
+
+

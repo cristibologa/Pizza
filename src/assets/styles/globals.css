@@ -9,10 +9,21 @@ body {
 	font-family: 'Nunito' sans-serif;
   display: flex;
   flex-direction: column;
-
+  background-color: var(--neutral-50);
+  color: var(--foreground);
+  font-size: 16px;
 
 }
 
 main {
   flex-grow: 1;
+}
+
+
+a {
+  color: inherit;
+
+  &[class] {
+    text-decoration: none;
+  }
 }

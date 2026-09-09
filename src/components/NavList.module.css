@@ -1,0 +1,6 @@
+.nav__list{
+	display: flex;
+	padding-top: 40px;
+	justify-content: space-between;
+
+}
