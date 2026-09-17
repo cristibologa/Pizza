@@ -1,0 +1,30 @@
+.grid{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 32px;
+	max-width: 832px;
+}
+.cart{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	font-size: 20px;
+	border-radius: 24px;
+
+	h4{
+		min-height: 60px; 
+  		line-height: 28px;
+		
+	}
+}
+.image__wraper{
+	background-color: var(--surface-foreground);
+	padding-block: 6px;
+	border-radius: 24px;
+}
+.cart_accent{
+	background-color: var(--orange-500);
+	.image__wraper{
+		background-color: inherit;
+	}
+}
