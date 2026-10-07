@@ -1,6 +1,9 @@
 .nav__list{
 	display: flex;
-	padding-top: 40px;
+	margin-top: 30px;
 	justify-content: space-between;
-
+	position: sticky;
+	top: 0;
+	background-color: #fff;
+	padding-block: 10px;
 }

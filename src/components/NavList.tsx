@@ -1,42 +1,30 @@
 import { Group, Button } from "@mantine/core";
-
 import { ShoppingBasket } from "lucide-react";
 
+import { category } from "./categories";
 import style from "./NavList.module.css";
 
-export default function NavList() {
+type NavListProps = { active: string };
+
+export default function NavList({ active }: NavListProps) {
+  const scrollTo = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
   return (
     <div className={`${style.nav__list} container`}>
       <Group>
-        <Button
-          radius="xl"
-          c="var(--primary)"
-          color="var(--surface-foreground)"
-        >
-          Пиццы
-        </Button>
-
-        <Button
-          radius="xl"
-          c="var(--primary)"
-          color="var(--surface-foreground)"
-        >
-          Завтраки
-        </Button>
-        <Button
-          radius="xl"
-          c="var(--primary)"
-          color="var(--surface-foreground)"
-        >
-          Крылышки
-        </Button>
-        <Button
-          radius="xl"
-          c="var(--primary)"
-          color="var(--surface-foreground)"
-        >
-          Милкшейки
-        </Button>
+        {Object.entries(category).map(([key, title]) => (
+          <Button
+            key={key}
+            radius="xl"
+            variant={active === key ? "filled" : "light"}
+            c={active === key ? "white" : "var(--primary)"}
+            color={active === key ? "black" : "var(--surface-foreground)"}
+            onClick={() => scrollTo(key)}
+          >
+            {title}
+          </Button>
+        ))}
       </Group>
 
       <Button

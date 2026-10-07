@@ -1,5 +1,6 @@
 import type { PizzaProduct } from "../generated/api/types.gen";
 import Cart from "./Cart";
+import { category } from "./categories";
 
 import style from "./Main.module.css";
 
@@ -7,19 +8,10 @@ type MainProps = {
   data?: PizzaProduct[];
 };
 
-const category = {
-  pizza: "Пиццы",
-  breakfast: "Завтраки",
-  wings: "Крылышки",
-  milkshake: "Милкшейки",
-} as const;
-
 export default function Main({ data }: MainProps) {
   if (!data) {
     return "loading";
   }
-
-  console.log(data);
 
   return (
     <main className="container">
@@ -28,7 +20,7 @@ export default function Main({ data }: MainProps) {
           const items = data.filter((item) => item.category === key);
 
           return (
-            <section key={key}>
+            <section key={key} id={key} className={style.section}>
               <h2>{title}</h2>
               <div className={style.sectionBody}>
                 {items.map((item) => (
