@@ -1,0 +1,726 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BaseResponse {
+  reason: String
+  success: Boolean!
+}
+
+type CalculateOrderResponse {
+  commission: PizzaCommission!
+  items: [CalculatedItem!]!
+  itemsPrice: Float!
+  reason: String
+  success: Boolean!
+  totalPrice: Float!
+}
+
+input CalculatePizzaOrderDto {
+  items: [PizzaOrderedItemInput!]!
+}
+
+type CalculatedItem {
+  name: String!
+  productId: ID!
+  quantity: Int!
+  totalPrice: Float!
+  unitPrice: Float!
+}
+
+type CancelPizzaOrderResponse {
+  order: PizzaOrder!
+  reason: String
+  success: Boolean!
+}
+
+type Card {
+  _id: ID!
+  cryptoPacket: String!
+  expiry: String!
+  panMasked: String!
+  phone: String!
+}
+
+input CardInput {
+  _id: ID!
+  cryptoPacket: String!
+  expiry: String!
+  panMasked: String!
+  phone: String!
+}
+
+input CreateGameOrderDto {
+  deliveryType: GameDeliveryType!
+  edition: String!
+  gameSlug: String!
+  person: CreateGameOrderPersonDto!
+  region: GameRegion!
+}
+
+input CreateGameOrderPersonDto {
+  email: String!
+  inviteLink: String
+  phone: String!
+}
+
+type CreateGameOrderResponse {
+  order: GameOrder!
+  reason: String
+  success: Boolean!
+  transaction: Transaction!
+}
+
+type CreateOtpResponse {
+  reason: String
+  retryDelay: Float!
+  success: Boolean!
+}
+
+input CreatePizzaPaymentAddressDto {
+  apartment: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+input CreatePizzaPaymentDto {
+  items: [PizzaOrderedItemInput!]!
+  person: CreatePizzaPaymentPersonDto!
+  receiverAddress: CreatePizzaPaymentAddressDto!
+}
+
+input CreatePizzaPaymentPersonDto {
+  phone: String!
+}
+
+type CreatePizzaPaymentResponse {
+  order: PizzaOrder!
+  reason: String
+  success: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeleteCardResponse {
+  id: ID!
+  reason: String
+  success: Boolean!
+}
+
+enum GameDeliveryType {
+  EPIC_KEY
+  NINTENDO_KEY
+  PLAYSTATION_KEY
+  STEAM_GIFT
+  STEAM_KEY
+  XBOX_KEY
+}
+
+type GameDetailed {
+  deliveryTypes: [GameDeliveryType!]!
+  description: String!
+  developer: String!
+  externalId: String!
+  minimumSystemRequirements: GameSystemRequirements!
+  publisher: String!
+  recommendedSystemRequirements: GameSystemRequirements!
+  screenshots: [String!]!
+}
+
+enum GameFilter {
+  DISCOUNT
+  DLC
+}
+
+type GameFiltered {
+  priceVariant: GamePriceVariant!
+}
+
+enum GameGenre {
+  ACTION
+  ADVENTURE
+  HORROR
+  INDIE
+  RACING
+  RPG
+  SHOOTER
+  SIMULATION
+  SPORTS
+  STRATEGY
+  SURVIVAL
+}
+
+type GameOrder {
+  _id: ID!
+  createdAt: DateTime!
+  deliveryType: GameDeliveryType!
+  edition: String!
+  gameImage: String!
+  gameKey: String
+  gameName: String!
+  gameSlug: String!
+  person: GameOrderPerson!
+  price: Float!
+  region: GameRegion!
+  status: GameOrderStatus!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+input GameOrderInput {
+  _id: ID!
+  createdAt: DateTime!
+  deliveryType: GameDeliveryType!
+  edition: String!
+  gameImage: String!
+  gameKey: String
+  gameName: String!
+  gameSlug: String!
+  person: GameOrderPersonInput!
+  price: Float!
+  region: GameRegion!
+  status: GameOrderStatus!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+type GameOrderPerson {
+  email: String!
+  inviteLink: String
+  phone: String!
+}
+
+input GameOrderPersonInput {
+  email: String!
+  inviteLink: String
+  phone: String!
+}
+
+type GameOrderResponse {
+  order: GameOrder!
+  reason: String
+  success: Boolean!
+}
+
+"""Статус заказа игры"""
+enum GameOrderStatus {
+  AWAITING_PAYMENT
+  PAID
+}
+
+type GameOrdersResponse {
+  orders: [GameOrder!]!
+  reason: String
+  success: Boolean!
+}
+
+type GamePaginationMeta {
+  limit: Float!
+  page: Float!
+  total: Float!
+  totalPages: Float!
+}
+
+type GamePriceVariant {
+  deliveryType: GameDeliveryType!
+  edition: String!
+  oldPrice: Float
+  price: Float!
+  region: GameRegion!
+}
+
+type GamePriceVariantsResponse {
+  priceVariants: [GamePriceVariant!]!
+  reason: String
+  success: Boolean!
+}
+
+enum GameRegion {
+  ALL_WORLD
+  ASIA
+  BY
+  EUROPE
+  KZ
+  PL
+  RU
+  TR
+  UA
+}
+
+type GameRegionsResponse {
+  reason: String
+  regions: [GameRegion!]!
+  success: Boolean!
+}
+
+type GameResponse {
+  game: GameDetailed!
+  reason: String
+  success: Boolean!
+}
+
+type GameSearchResponse {
+  games: [GameFiltered!]!
+  reason: String
+  success: Boolean!
+}
+
+type GameSystemRequirements {
+  graphics: String
+  memory: String
+  oc: String
+  processor: String
+  storage: String
+}
+
+enum GameView {
+  NEW
+  POPULAR
+}
+
+type GamesPaginatedResponse {
+  games: [GameFiltered!]!
+  meta: GamePaginationMeta!
+  reason: String
+  success: Boolean!
+}
+
+type GetCardsResponse {
+  cards: [Card!]!
+  reason: String
+  success: Boolean!
+}
+
+type GetPizzaCatalogResponse {
+  catalog: [PizzaProduct!]!
+  reason: String
+  success: Boolean!
+}
+
+type GetPizzaOrderResponse {
+  order: PizzaOrder!
+  reason: String
+  success: Boolean!
+}
+
+type GetPizzaOrdersResponse {
+  orders: [PizzaOrder!]!
+  reason: String
+  success: Boolean!
+}
+
+type GetProfileResponse {
+  reason: String
+  success: Boolean!
+  user: User!
+}
+
+type GetTransactionResponse {
+  reason: String
+  success: Boolean!
+  transaction: Transaction!
+}
+
+type Mutation {
+  """Отменить заказ"""
+  cancelPizzaOrder(orderId: String!): CancelPizzaOrderResponse!
+
+  """Создать заказ игры и транзакцию для оплаты"""
+  createGameOrder(input: CreateGameOrderDto!): CreateGameOrderResponse!
+  createOtp(phone: String!): CreateOtpResponse!
+
+  """Создать заказ и транзакцию для оплаты"""
+  createPizzaPayment(input: CreatePizzaPaymentDto!): CreatePizzaPaymentResponse!
+  deleteCard(cardId: String!): DeleteCardResponse!
+
+  """Оплатить транзакцию: новая карта / сохранённая карта"""
+  payTransaction(cardId: String, cvv: String, expireDate: String, method: TransactionPayMethod!, pan: String, saveCard: Boolean = true, transactionId: String!): PayTransactionResponse!
+
+  """Оплатить транзакцию по QR"""
+  payTransactionByQr(transactionId: String!): PayTransactionResponse!
+  signIn(code: Float!, phone: String!): SignInResponse!
+  signOut: BaseResponse!
+  updateProfile(city: String, email: String, firstname: String, lastname: String, middlename: String): UpdateProfileResponse!
+}
+
+type PayTransactionResponse {
+  reason: String
+  success: Boolean!
+  transaction: Transaction!
+}
+
+type PizzaAddress {
+  apartment: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+input PizzaAddressInput {
+  apartment: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+"""Категория продукта"""
+enum PizzaCategory {
+  BREAKFAST
+  MILKSHAKE
+  PIZZA
+  WINGS
+}
+
+type PizzaCommission {
+  amount: Float!
+  currency: String!
+}
+
+input PizzaCommissionInput {
+  amount: Float!
+  currency: String!
+}
+
+type PizzaIngredient {
+  img: String!
+  price: Float!
+  type: PizzaIngredientType!
+}
+
+input PizzaIngredientInput {
+  img: String!
+  price: Float!
+  type: PizzaIngredientType!
+}
+
+"""Ингредиенты"""
+enum PizzaIngredientType {
+  BACON
+  BASIL
+  CHEDDAR
+  CHICKEN_FILLET
+  CHILE
+  FETA
+  GREEN_PEPPER
+  HAM
+  MEATBALLS
+  MOZZARELLA
+  MUSHROOMS
+  ONION
+  PARMESAN
+  PEPPERONI
+  PICKLE
+  PINEAPPLE
+  SHRIMP
+  TOMATO
+}
+
+type PizzaItemSize {
+  price: Float!
+  type: PizzaSize!
+  volume: Float
+}
+
+input PizzaItemSizeInput {
+  price: Float!
+  type: PizzaSize!
+  volume: Float
+}
+
+type PizzaOption {
+  price: Float!
+  type: PizzaOptionType!
+}
+
+input PizzaOptionInput {
+  price: Float!
+  type: PizzaOptionType!
+}
+
+"""Доп-опции продукта"""
+enum PizzaOptionType {
+  CREAM_WITH
+  CREAM_WITHOUT
+  CRUST_CHEESE
+  CRUST_THICK
+  CRUST_THIN
+}
+
+type PizzaOrder {
+  _id: ID!
+  cancellable: Boolean!
+  commission: PizzaCommission!
+  createdAt: DateTime!
+  items: [PizzaOrderedItem!]!
+  itemsPrice: Float!
+  person: PizzaPerson!
+  receiverAddress: PizzaAddress!
+  status: PizzaStatus!
+  totalPrice: Float!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+input PizzaOrderInput {
+  _id: ID!
+  cancellable: Boolean!
+  commission: PizzaCommissionInput!
+  createdAt: DateTime!
+  items: [PizzaOrderedItemInput!]!
+  itemsPrice: Float!
+  person: PizzaPersonInput!
+  receiverAddress: PizzaAddressInput!
+  status: PizzaStatus!
+  totalPrice: Float!
+  transactionId: String
+  updatedAt: DateTime!
+}
+
+type PizzaOrderedItem {
+  _id: ID!
+  category: PizzaCategory!
+  option: PizzaOptionType
+  quantity: Int!
+  size: PizzaSize
+  toppings: [PizzaIngredientType!]
+}
+
+input PizzaOrderedItemInput {
+  _id: ID!
+  category: PizzaCategory!
+  option: PizzaOptionType
+  quantity: Int! = 1
+  size: PizzaSize
+  toppings: [PizzaIngredientType!]
+}
+
+type PizzaPerson {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+input PizzaPersonInput {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+type PizzaProduct {
+  _id: ID!
+  allergens: [String!]!
+  calories: Float!
+  carbohydrates: String!
+  category: PizzaCategory!
+  description: String!
+  img: String!
+  ingredients: [PizzaIngredient!]
+  isGlutenFree: Boolean!
+  isHit: Boolean!
+  isNovelty: Boolean!
+  isVegetarian: Boolean!
+  name: String!
+  options: [PizzaOption!]
+  protein: String!
+  sizes: [PizzaItemSize!]!
+  sodium: String!
+  totalFat: String!
+}
+
+input PizzaProductInput {
+  _id: ID!
+  allergens: [String!]!
+  calories: Float!
+  carbohydrates: String!
+  category: PizzaCategory!
+  description: String!
+  img: String!
+  ingredients: [PizzaIngredientInput!]
+  isGlutenFree: Boolean!
+  isHit: Boolean!
+  isNovelty: Boolean!
+  isVegetarian: Boolean!
+  name: String!
+  options: [PizzaOptionInput!]
+  protein: String!
+  sizes: [PizzaItemSizeInput!]!
+  sodium: String!
+  totalFat: String!
+}
+
+"""Размер продукта"""
+enum PizzaSize {
+  LARGE
+  MEDIUM
+  SMALL
+}
+
+"""Статус заказа"""
+enum PizzaStatus {
+  AWAITING_PAYMENT
+  CANCELED
+  IN_PROCESSING
+  ON_MY_WAY
+  SUCCESS
+  WAITING_COURIER
+}
+
+type Query {
+  """Рассчитать стоимость корзины"""
+  calculatePizzaOrder(input: CalculatePizzaOrderDto!): CalculateOrderResponse!
+  getCards: GetCardsResponse!
+
+  """Получить каталог"""
+  getCatalog(category: PizzaCategory): GetPizzaCatalogResponse!
+
+  """Получить игру"""
+  getGame(slug: String!): GameResponse!
+
+  """Получить заказ игры"""
+  getGameOrder(orderId: String!): GameOrderResponse!
+
+  """Получить все заказы игр"""
+  getGameOrders: GameOrdersResponse!
+
+  """Получить оплаченный заказ игры по одноразовому токену"""
+  getGamePaidOrder(token: String!): GameOrderResponse!
+
+  """Получить варианты цен"""
+  getGamePriceVariants(deliveryType: GameDeliveryType!, region: GameRegion!, slug: String!): GamePriceVariantsResponse!
+
+  """Получить регионы"""
+  getGameRegions(deliveryType: GameDeliveryType!, slug: String!): GameRegionsResponse!
+
+  """Получить игры"""
+  getGames(filter: [GameFilter!], genre: [GameGenre!], limit: Float, page: Float, view: GameView): GamesPaginatedResponse!
+
+  """Получить заказ"""
+  getPizzaOrder(orderId: String!): GetPizzaOrderResponse!
+
+  """Получить все заказы"""
+  getPizzaOrders: GetPizzaOrdersResponse!
+
+  """Получить оплаченный заказ по одноразовому токену"""
+  getPizzaPaidOrder(token: String!): GetPizzaOrderResponse!
+  getProfile: GetProfileResponse!
+  getTransaction(transactionId: String!): GetTransactionResponse!
+
+  """Поиск по играм"""
+  searchGames(limit: Float, search: String!): GameSearchResponse!
+}
+
+type SignInResponse {
+  reason: String
+  success: Boolean!
+  token: String!
+  user: User!
+}
+
+type Transaction {
+  _id: String!
+  accessToken: String
+  amount: Float!
+  cardCryptoPacket: String
+  createdAt: DateTime
+  currency: String!
+  expiresAt: DateTime!
+  orderId: String
+  orderType: TransactionOrderType!
+  paidAt: DateTime
+  phone: String!
+  status: TransactionStatus!
+}
+
+input TransactionInput {
+  _id: String!
+  accessToken: String
+  amount: Float!
+  cardCryptoPacket: String
+  createdAt: DateTime
+  currency: String!
+  expiresAt: DateTime!
+  orderId: String
+  orderType: TransactionOrderType!
+  paidAt: DateTime
+  phone: String!
+  status: TransactionStatus!
+}
+
+"""Тип заказа"""
+enum TransactionOrderType {
+  CAR
+  CINEMA
+  DELIVERY
+  GAME
+  PIZZA
+}
+
+"""Способ оплаты транзакции"""
+enum TransactionPayMethod {
+  NEW_CARD
+  QR
+  SAVED_CARD
+}
+
+"""Статус транзакции"""
+enum TransactionStatus {
+  FAILED
+  PAID
+  PENDING
+}
+
+type UpdateProfileResponse {
+  reason: String
+  success: Boolean!
+  user: User!
+}
+
+type User {
+  _id: String!
+
+  """Город"""
+  city: String
+
+  """Почта"""
+  email: String
+
+  """Имя"""
+  firstname: String
+
+  """Фамилия"""
+  lastname: String
+
+  """Отчество"""
+  middlename: String
+
+  """Номер телефона"""
+  phone: String!
+}
+
+input UserInput {
+  _id: String!
+
+  """Город"""
+  city: String
+
+  """Почта"""
+  email: String
+
+  """Имя"""
+  firstname: String
+
+  """Фамилия"""
+  lastname: String
+
+  """Отчество"""
+  middlename: String
+
+  """Номер телефона"""
+  phone: String!
+}

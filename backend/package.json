@@ -1,0 +1,71 @@
+{
+  "name": "juniors-bootcamp-backend",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "npx @nestjs/cli start --watch",
+    "build": "npx @nestjs/cli build",
+    "docker-compose": "docker compose -p juniors-bootcamp-backend up --build",
+    "dev-debug": "nest start --debug --watch",
+    "prod": "node dist/src/main",
+    "lint": "eslint . --fix",
+    "lint-inspector": "npx @eslint/config-inspector",
+    "format": "prettier --write \"**/*.(ts|js)\"",
+    "pretty": "yarn format && yarn lint",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/fastify": "^3.1.0",
+    "@fastify/cookie": "^11.1.1",
+    "@fastify/cors": "^11.3.0",
+    "@fastify/static": "^9.3.0",
+    "@fastify/view": "^12.0.0",
+    "@nestjs/apollo": "^13.4.2",
+    "@nestjs/cli": "^11.0.24",
+    "@nestjs/common": "^11.1.28",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.28",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/graphql": "^13.4.2",
+    "@nestjs/mapped-types": "^2.1.1",
+    "@nestjs/mongoose": "^11.0.4",
+    "@nestjs/platform-fastify": "^11.1.28",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/serve-static": "^5.0.5",
+    "@nestjs/swagger": "^11.4.5",
+    "@scalar/nestjs-api-reference": "^1.2.9",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "generate-password": "^1.7.1",
+    "graphql": "^16.14.2",
+    "graphql-subscriptions": "^3.0.0",
+    "handlebars": "^4.7.9",
+    "mongoose": "^9.7.4",
+    "nestjs-i18n": "^10.8.5",
+    "prom-client": "^15.1.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "@nestjs/schematics": "^11.1.0",
+    "@siberiacancode/eslint": "^2.18.0",
+    "@siberiacancode/prettier": "^1.8.0",
+    "@types/node": "^26.1.1",
+    "husky": "^9.1.7",
+    "nano-staged": "^1.0.2",
+    "source-map-support": "^0.5.21",
+    "typescript": "~5.9.3"
+  },
+  "nano-staged": {
+    "*.js": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint --no-error-on-unmatched-pattern --fix"
+    ]
+  }
+}

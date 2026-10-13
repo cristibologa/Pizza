@@ -1,0 +1,39 @@
+networks:
+  juniors-bootcamp:
+    driver: bridge
+
+volumes:
+  juniors-bootcamp-data:
+    driver: local
+
+services:
+  juniors-bootcamp-database:
+    image: mongo:latest
+    restart: always
+    container_name: juniors-bootcamp-database
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DATABASE_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - '${DATABASE_PORT}:27017'
+    volumes:
+      - juniors-bootcamp-data:/data/db
+    networks:
+      - juniors-bootcamp
+
+  juniors-bootcamp-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: juniors-bootcamp-backend
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT=3010
+      - SERVER_URL=${SERVER_URL}
+      - DATABASE_URL=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@juniors-bootcamp-database:27017/${DATABASE_NAME}?authSource=admin
+    ports:
+      - '3010:3010'
+    depends_on:
+      - juniors-bootcamp-database
+    networks:
+      - juniors-bootcamp
