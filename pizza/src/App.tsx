@@ -1,22 +1,33 @@
+import { useCallback, useState } from "react";
+import { useFetch } from "@mantine/hooks";
+
 import Header from "./components/Header";
 import NavList from "./components/NavList";
-import { useFetch } from "@mantine/hooks";
-import type { GetPizzaCatalogResponse } from "./generated/api/types.gen";
 import Main from "./components/Main";
-import { useActiveSection } from "./components/useActiveSection";
-import { categoryKeys } from "./components/categories"; // <-- add this
+import { categoryKeys } from "./components/categories";
+import type { GetPizzaCatalogResponse } from "./generated/api/types.gen";
 
 function App() {
   const { data } = useFetch<GetPizzaCatalogResponse>(
-    "http://localhost:3010/api/pizzas/catalog",
+    "http://localhost:3001/api/pizzas/catalog",
   );
-  const active = useActiveSection(categoryKeys, !!data);
+
+  const [visible, setVisible] = useState<Record<string, boolean>>({});
+
+  const handleVisibleChange = useCallback((id: string, isVisible: boolean) => {
+    setVisible((prev) =>
+      prev[id] === isVisible ? prev : { ...prev, [id]: isVisible },
+    );
+  }, []);
+
+  // First section (in page order) inside the trigger band; first one by default
+  const active = categoryKeys.find((key) => visible[key]) ?? categoryKeys[0];
 
   return (
     <>
       <Header />
       <NavList active={active} />
-      <Main data={data?.catalog} />
+      <Main data={data?.catalog} onVisibleChange={handleVisibleChange} />
     </>
   );
 }
